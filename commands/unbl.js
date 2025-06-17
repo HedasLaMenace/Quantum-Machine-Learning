@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const sendLog = require('../sendLog'); // Ton fichier sendLog.js doit exister
+const sendLog = require('./sendlog'); // Correction : même dossier
 
 module.exports = {
   name: 'unbl',
