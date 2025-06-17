@@ -1,0 +1,8 @@
+// Chargement des commandes depuis le dossier commands
+client.commands = new Map();
+const commandsPath = path.join(__dirname, 'commands');
+fs.readdirSync(commandsPath).forEach(file => {
+  if (!file.endsWith('.js')) return;
+  const command = require(path.join(commandsPath, file));
+  if (command.name) client.commands.set(command.name, command);
+});
