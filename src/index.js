@@ -114,4 +114,24 @@ client.on('messageCreate', async (message) => {
   }
 });
 
+client.snipes = new Map();
+
+client.on('messageDelete', message => {
+  if (message.partial || !message.content || message.author.bot) return;
+  
+  client.snipes.set(message.channel.id, {
+    content: message.content,
+    author: message.author,
+    timestamp: message.createdTimestamp
+  });
+
+  // Garde seulement le dernier snipe par salon
+  if (client.snipes.size > 100) {
+    client.snipes.delete([...client.snipes.keys()][0]);
+  }
+});
+
+console.log('BOT_TOKEN:', process.env.BOT_TOKEN ? '[TOKEN DETECTED]' : '⚠️ Aucun token trouvé');
+console.log('BOT_TOKEN length:', process.env.BOT_TOKEN ? process.env.BOT_TOKEN.length : '0');
+
 client.login(process.env.BOT_TOKEN);
