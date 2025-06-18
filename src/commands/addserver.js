@@ -6,7 +6,7 @@ module.exports = {
   description: 'Ajoute un serveur à la whitelist (owner only)',
 
   async execute(message, args) {
-    const ownerId = '1308505582365442100'; // Remplace par ton ID Discord
+    const ownerId = '1308505582365442100'; // Ton ID Discord
     if (message.author.id !== ownerId) {
       return message.reply('❌ Tu n\'as pas la permission d\'utiliser cette commande.');
     }
